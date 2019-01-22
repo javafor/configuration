@@ -1,1 +1,91 @@
+spring:
+  sleuth:
+      web:
+        client:
+          enabled: true
+      sampler:
+        percentage: 1
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: 192.168.1.180
+          defaultBrokerPort: 9092
+          zkNodes: 192.168.1.180
+          defaultZkPort: 2181
+          minPartitionCount: 1
+          autoCreateTopics: true
+          autoAddPartitions: true
+  # rabbitmq:
+  #   host: 192.168.1.131
+  #   port: 5672
+  #   username: springcloud
+  #   password: springcloud
 
+eureka:
+  instance:
+    lease-expiration-duration-in-seconds: 20
+    lease-renewal-interval-in-seconds: 10
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}:${spring.application.name}
+  client:
+    registry-fetch-interval-seconds: 10
+
+zuul:
+  semaphore:
+    max-semaphores: 30000
+  # host:
+  #   maxTotalConnections: 10000
+  #   max-per-route-connections: 1000
+  retryable: true
+  ignored-services: '*' #忽略默认路由，手动创建路由规则，防止生产者路由暴露
+#  prefix: /api
+#  strip-prefix: false
+  routes:
+    service1: /service1/**
+#      path: /service1/**
+#      serviceId: service1
+    service2: /service2/**
+#      path: /service2/**
+#      serviceId: service2
+    security-server: /auth/**
+    turbine-server: /monitor/**
+    zipkin-server: /**
+    traffic-base: /base/**
+    traffic-base1: /base1/**
+    traffic-analyse: /analyse/**
+    traffic-common: /commons/**
+    traffic-planning: /plan/**
+    traffic-vehicle-schedule: /schedule/**
+  host:
+    max-total-connections: 20000
+    socket-timeout-millis: 60000
+    connect-timeout-millis: 60000
+    max-per-route-connections: 2000
+  sensitive-headers: #Cookie,Set-Cookie,Authorization
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+ribbon:
+  ConnectTimeout: 2000
+  ReadTimeout: 60000
+  OkToRetryOnAllOperations: true
+  MaxAutoRetriesNextServer: 2
+  MaxAutoRetries: 1
+  NFLoadBalancerRuleClassName: com.netflix.loadbalancer.WeightedResponseTimeRule
+management:
+  security:
+    enabled: false
+security:
+ oauth2:
+   client:
+     access-token-uri: http://192.168.1.164:8900/api/auth/oauth/token
+     user-authorization-uri: http://192.168.1.164:8900/api/auth/oauth/authorize
+     client-id: app
+   resource:
+     user-info-uri: http://192.168.1.164:8900/api/auth/user
+     prefer-token-info: false
