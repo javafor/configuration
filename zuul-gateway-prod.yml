@@ -80,12 +80,12 @@ ribbon:
 management:
   security:
     enabled: false
-security:
- oauth2:
-   client:
-     access-token-uri: http://192.168.1.164:8900/api/auth/oauth/token
-     user-authorization-uri: http://192.168.1.164:8900/api/auth/oauth/authorize
-     client-id: app
-   resource:
-     user-info-uri: http://192.168.1.164:8900/api/auth/user
-     prefer-token-info: false
+# security:
+#  oauth2:
+#    client:
+#      access-token-uri: http://192.168.1.164:8900/api/auth/oauth/token
+#      user-authorization-uri: http://192.168.1.164:8900/api/auth/oauth/authorize
+#      client-id: app
+#    resource:
+#      user-info-uri: http://192.168.1.164:8900/api/auth/user
+#      prefer-token-info: false
