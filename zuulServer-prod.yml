@@ -41,22 +41,22 @@ zuul:
   ignored-services: '*' #忽略默认路由，手动创建路由规则，防止生产者路由暴露
 #  prefix: /api
 #  strip-prefix: false
-  routes:
-    service1: /service1/**
+#   routes:
+#     service1: /service1/**
 #      path: /service1/**
 #      serviceId: service1
-    service2: /service2/**
+#     service2: /service2/**
 #      path: /service2/**
 #      serviceId: service2
-    security-server: /auth/**
-    turbine-server: /monitor/**
-    zipkin-server: /**
-    traffic-base: /base/**
-    traffic-base1: /base1/**
-    traffic-analyse: /analyse/**
-    traffic-common: /commons/**
-    traffic-planning: /plan/**
-    traffic-vehicle-schedule: /schedule/**
+#     security-server: /auth/**
+#     turbine-server: /monitor/**
+#     zipkin-server: /**
+#     traffic-base: /base/**
+#     traffic-base1: /base1/**
+#     traffic-analyse: /analyse/**
+#     traffic-common: /commons/**
+#     traffic-planning: /plan/**
+#     traffic-vehicle-schedule: /schedule/**
   host:
     max-total-connections: 20000
     socket-timeout-millis: 60000
