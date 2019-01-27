@@ -23,13 +23,13 @@ spring:
     stream:
       kafka:
         binder:
-          brokers: 192.168.1.180
-          defaultBrokerPort: 9092
-          zkNodes: 192.168.1.180
-          defaultZkPort: 2181
-          minPartitionCount: 1
-          autoCreateTopics: true
-          autoAddPartitions: true
+           brokers: 192.168.1.180
+           defaultBrokerPort: 9092
+           zkNodes: 192.168.1.180
+           defaultZkPort: 2181
+           minPartitionCount: 1
+           autoCreateTopics: true
+           autoAddPartitions: true
 
     bus:
       trace:
