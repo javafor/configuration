@@ -1,0 +1,36 @@
+#server:
+#  connection-timeout: 30000
+#  tomcat:
+#    min-spare-threads: 100
+#    max-threads: 1000
+#    max-connections: 1500
+#    uri-encoding: UTF-8
+#    accept-count: 1000
+eureka:
+  instance:
+    lease-expiration-duration-in-seconds: 20
+    lease-renewal-interval-in-seconds: 10
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}:${spring.application.name}
+  client:
+    registry-fetch-interval-seconds: 10
+    healthcheck:
+      enabled: true
+
+
+spring:
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: 192.168.1.180
+          defaultBrokerPort: 9092
+          zkNodes: 192.168.1.180
+          defaultZkPort: 2181
+          minPartitionCount: 1
+          autoCreateTopics: true
+          autoAddPartitions: true
+
+    bus:
+      trace:
+        enabled: true
